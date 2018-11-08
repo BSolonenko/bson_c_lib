@@ -1,4 +1,4 @@
-#include "emhashmap.h"
+#include "emhashmap/emhashmap.h"
 
 #include <stdlib.h>
 #include <stddef.h>

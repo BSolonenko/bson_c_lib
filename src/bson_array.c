@@ -1,4 +1,4 @@
-#include "bson_array.h"
+#include "bson/bson_array.h"
 
 bool bson_array_initialize(BsonArray *array, size_t initialCapacity) {
   array->count = 0;
@@ -251,7 +251,7 @@ char *bson_array_to_string(BsonArray *array, char *out) {
       }
     }
     if (i != (array->count - 1)) {
-      position += sprintf(&out[position], ", ");    
+      position += sprintf(&out[position], ", ");
     }
   }
   sprintf(&out[position], " ]");
@@ -350,42 +350,42 @@ BsonElement *bson_array_get(BsonArray *array, size_t index) {
 
 BsonObject *bson_array_get_object(BsonArray *array, size_t index) {
   BsonElement *element = bson_array_get(array, index);
-  return (element == NULL || element->type != TYPE_DOCUMENT) ? 
+  return (element == NULL || element->type != TYPE_DOCUMENT) ?
           NULL : (BsonObject *)element->value;
 }
 
 BsonArray *bson_array_get_array(BsonArray *array, size_t index) {
   BsonElement *element = bson_array_get(array, index);
-  return (element == NULL || element->type != TYPE_ARRAY) ? 
+  return (element == NULL || element->type != TYPE_ARRAY) ?
           NULL : (BsonArray *)element->value;
 }
 
 int32_t bson_array_get_int32(BsonArray *array, size_t index) {
   BsonElement *element = bson_array_get(array, index);
-  return (element == NULL || element->type != TYPE_INT32) ? 
+  return (element == NULL || element->type != TYPE_INT32) ?
           -1 : *(int32_t *)element->value;
 }
 
 int64_t bson_array_get_int64(BsonArray *array, size_t index) {
   BsonElement *element = bson_array_get(array, index);
-  return (element == NULL || element->type != TYPE_INT64) ? 
+  return (element == NULL || element->type != TYPE_INT64) ?
           -1 : *(int64_t *)element->value;
 }
 
 char *bson_array_get_string(BsonArray *array, size_t index) {
   BsonElement *element = bson_array_get(array, index);
-  return (element == NULL || element->type != TYPE_STRING) ? 
+  return (element == NULL || element->type != TYPE_STRING) ?
          NULL : (char *)element->value;
 }
 
 bson_boolean bson_array_get_bool(BsonArray *array, size_t index) {
   BsonElement *element = bson_array_get(array, index);
-  return (element == NULL || element->type != TYPE_BOOLEAN) ? 
+  return (element == NULL || element->type != TYPE_BOOLEAN) ?
           BOOLEAN_INVALID : *(bson_boolean *)element->value;
 }
 
 double bson_array_get_double(BsonArray *array, size_t index) {
   BsonElement *element = bson_array_get(array, index);
-  return (element == NULL || element->type != TYPE_DOUBLE) ? 
+  return (element == NULL || element->type != TYPE_DOUBLE) ?
           -1 : *(double *)element->value;
 }

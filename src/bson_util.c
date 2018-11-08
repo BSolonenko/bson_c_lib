@@ -1,4 +1,4 @@
-#include "bson_util.h"
+#include "bson/bson_util.h"
 
 void write_int32_le(uint8_t *bytes, int32_t value, size_t *position) {
   int i = 0;
@@ -94,7 +94,7 @@ char *byte_array_to_string(uint8_t *bytes) {
 
 char *byte_array_to_bson_string(uint8_t *bytes, size_t length) {
   char *stringVal = malloc(sizeof(char) * (length + 1));
-  
+
   int i = 0;
   for (i = 0; i < length; i++) {
     stringVal[i] = (char)(bytes[i] & 0xFF);

@@ -1,4 +1,4 @@
-#include "bson_object.h"
+#include "bson/bson_object.h"
 #define DEFAULT_MAP_SIZE 32
 
 size_t hash_function(const char* key, size_t maxValue) {
@@ -275,7 +275,7 @@ char *bson_object_to_string(BsonObject *obj, char *out) {
     }
     current = emhashmap_iterator_next(&iterator);
     if (current != NULL) {
-      position += sprintf(&out[position], ", ");    
+      position += sprintf(&out[position], ", ");
     }
   }
   sprintf(&out[position], " }");
@@ -351,43 +351,43 @@ BsonElement *bson_object_get(BsonObject *obj, const char *key) {
 
 BsonObject *bson_object_get_object(BsonObject *obj, const char *key) {
   BsonElement *element = bson_object_get(obj, key);
-  return (element == NULL || element->type != TYPE_DOCUMENT) ? 
+  return (element == NULL || element->type != TYPE_DOCUMENT) ?
           NULL : (BsonObject *)element->value;
 }
 
 BsonArray *bson_object_get_array(BsonObject *obj, const char *key) {
   BsonElement *element = bson_object_get(obj, key);
-  return (element == NULL || element->type != TYPE_ARRAY) ? 
+  return (element == NULL || element->type != TYPE_ARRAY) ?
           NULL : (BsonArray *)element->value;
 }
 
 int32_t bson_object_get_int32(BsonObject *obj, const char *key) {
   BsonElement *element = bson_object_get(obj, key);
-  return (element == NULL || element->type != TYPE_INT32) ? 
+  return (element == NULL || element->type != TYPE_INT32) ?
           -1 : *(int32_t *)element->value;
 }
 
 int64_t bson_object_get_int64(BsonObject *obj, const char *key) {
   BsonElement *element = bson_object_get(obj, key);
-  return (element == NULL || element->type != TYPE_INT64) ? 
+  return (element == NULL || element->type != TYPE_INT64) ?
           -1 : *(int64_t *)element->value;
 }
 
 char *bson_object_get_string(BsonObject *obj, const char *key) {
   BsonElement *element = bson_object_get(obj, key);
-  return (element == NULL || element->type != TYPE_STRING) ? 
+  return (element == NULL || element->type != TYPE_STRING) ?
           NULL : (char *)element->value;
 }
 
 bson_boolean bson_object_get_bool(BsonObject *obj, const char *key) {
   BsonElement *element = bson_object_get(obj, key);
-  return (element == NULL || element->type != TYPE_BOOLEAN) ? 
+  return (element == NULL || element->type != TYPE_BOOLEAN) ?
           BOOLEAN_INVALID : *(bson_boolean *)element->value;
 }
 
 double bson_object_get_double(BsonObject *obj, const char *key) {
   BsonElement *element = bson_object_get(obj, key);
-  return (element == NULL || element->type != TYPE_DOUBLE) ? 
+  return (element == NULL || element->type != TYPE_DOUBLE) ?
           -1 : *(double *)element->value;
 }
 
