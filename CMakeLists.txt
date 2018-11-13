@@ -19,7 +19,7 @@ target_include_directories(${PROJECT_NAME}
     "${CMAKE_CURRENT_LIST_DIR}/include"
 )
 
-add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/src/emhashmap")
+add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/emhashmap")
 
 target_link_libraries(${PROJECT_NAME}
   PRIVATE
